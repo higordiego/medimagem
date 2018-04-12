@@ -20,8 +20,6 @@
   <link href="lib/ionic/css/ionic.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
 
-  <script type="text/javascript" src="lib/angular-socket-io/socket.min.js"> </script>
-  <script type="text/javascript" src="lib/socket/socket.min.js"></script>
 
 
   <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
@@ -37,23 +35,23 @@
 
   <!-- your app's js -->
   <script src="js/app.js"></script>
-  <script src="js/controllers.js"></script>
-  <script src="js/services.js"></script>
+  <script src="js/run/ionic-run.js"></script>
+  <script src="js/const/config.js"></script>
+
+
+  <!-- Controllers -->
+  <script src="js/controllers/homeCtrl.js"></script>
+  <script src="js/controllers/callCtrl.js"></script>
+  
+  <!-- Factory -->
+  <script src="js/factory/clientFactory.js"></script>
+
+  <!-- routes-->
+  <script src="js/routes/application-route.js"></script>
+
 </head>
 
-<body ng-app="starter">
-  <!--
-      The nav bar that will be updated as we navigate between views.
-    -->
-  <ion-nav-bar class="bar-stable">
-    <ion-nav-back-button>
-    </ion-nav-back-button>
-  </ion-nav-bar>
-  <!--
-      The views will be rendered in the <ion-nav-view> directive below
-      Templates are in the /templates folder (but you could also
-      have templates inline in this html file if you'd like).
-    -->
+<body ng-app="app">
   <ion-nav-view></ion-nav-view>
 </body>
 
