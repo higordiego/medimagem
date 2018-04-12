@@ -58,6 +58,7 @@
                     alert('Não conectado');
                 });
             }
+
             $scope.preferencial = function () {
                 $cordovaBluetoothSerial.isConnected().then(function () {
                     ClientFactory.create({ name: 'PREFERENCIAL', preferencial: true }).then(function (response) {
@@ -84,6 +85,7 @@
                     alert('Não conectado');
                 });
             }
+            
             $scope.exam = function () {
                 $cordovaBluetoothSerial.isConnected().then(function () {
                     ClientFactory.create({ name: 'EXAMES' }).then(function (response) {
