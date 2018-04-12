@@ -1,8 +1,8 @@
-(function(){
+(function () {
 	'use strict';
-	app.controller('HomeCtrl', ['$scope','$ionicLoading','$cordovaBluetoothSerial'
-		,'$ionicPlatform','$state','$ionicPopup'
-		, function($scope,$ionicLoading,$cordovaBluetoothSerial,$ionicPlatform,$state,$ionicPopup){
+	app.controller('HomeCtrl', ['$scope', '$ionicLoading', '$cordovaBluetoothSerial'
+		, '$ionicPlatform', '$state', '$ionicPopup'
+		, function ($scope, $ionicLoading, $cordovaBluetoothSerial, $ionicPlatform, $state, $ionicPopup) {
 			$ionicLoading.hide()
 
 			$scope.bluetooths = [];
@@ -10,14 +10,14 @@
 			$scope.data = {}
 
 
-			$scope.doRefreshPrint = function(){
+			$scope.doRefreshPrint = function () {
 				$ionicLoading.show();
 				$scope.listProduct()
 				$scope.$broadcast('scroll.refreshComplete');
 			}
-			
 
-			function confirmPrint(){
+
+			function confirmPrint() {
 				var alertPopup = $ionicPopup.alert({
 					title: 'Impressora Conectada com Sucesso!',
 				});
@@ -27,54 +27,61 @@
 			}
 
 			$scope.connected = false;
-			$scope.listarBluetooth = function(){	
+			$scope.listarBluetooth = function () {
 				$cordovaBluetoothSerial.list().then(
-					function(results) {
+					function (results) {
 						$ionicLoading.hide();
-						angular.forEach(results, function(paireddev){
+						angular.forEach(results, function (paireddev) {
 							$scope.bluetooths.push(paireddev);
 						});
 					},
-					function(error) {
+					function (error) {
 						$ionicLoading.hide();
 						alert(error);
 					});
 			};
-			$scope.conectarBluetooth = function(blue) {
-                $ionicLoading.show();
+			$scope.conectarBluetooth = function (blue) {
+				$ionicLoading.show();
 				$scope.conectar(blue.bluetooth);
 			};
 
-			$scope.conectar = function(address){
-				if(!$scope.connected){
-					$cordovaBluetoothSerial.connect(address).then(function(){
-						$cordovaBluetoothSerial.isConnected().then(function(){
+			$scope.conectar = function (address) {
+				if (!$scope.connected) {
+					$cordovaBluetoothSerial.connect(address).then(function () {
+						$cordovaBluetoothSerial.isConnected().then(function () {
 							$ionicLoading.hide();
 							confirmPrint()
-						}, function(err){
+						}, function (err) {
 							$ionicLoading.hide();
-							alert(err);
+							var alertPopup = $ionicPopup.alert({
+								title: 'Error em Conectar a Impressora',
+							});
+							alertPopup.then();
 						});
-					},function(err){
+					}, function (err) {
 						$ionicLoading.hide();
-						alert(err);
+						var alertPopup = $ionicPopup.alert({
+							title: 'Error em Conectar a Impressora',
+						});
+						alertPopup.then();
+						$ionicLoading.hide();
 					});
 				}
 			}
-			
-			
-			$ionicPlatform.ready(function() {
-				$cordovaBluetoothSerial.isEnabled().then(function(){
+
+
+			$ionicPlatform.ready(function () {
+				$cordovaBluetoothSerial.isEnabled().then(function () {
 					$scope.habilitado = true;
 					$scope.listarBluetooth();
-				},function(){
+				}, function () {
 					$ionicLoading.hide();
 					$scope.habilitado = false;
 				});
 
 			});
-			
-			
+
+
 
 		}])
 })();
