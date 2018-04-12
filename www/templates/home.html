@@ -1,7 +1,7 @@
-<ion-view view-title="Impressora" class="bgGeral">
-  <ion-content style="margin-top: 150px">
+<ion-view view-title="Impressora">
+  <ion-content class="bgGeral">
     <ion-refresher pulling-text="Atualize.." on-refresh="doRefreshPrint()"></ion-refresher>
-    <div class="padding" style="margin-top: 50px">
+    <div class="padding" style="margin-top: 150px">
       Selecione o aparelho.
       <ion-list>
         <ion-radio ng-model="data.bluetooth" ng-value="blue.address" ng-repeat="blue in bluetooths">{{blue.name + &apos; - &apos; + blue.address}} </ion-radio>
