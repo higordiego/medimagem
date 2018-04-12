@@ -60,7 +60,7 @@
             }
             $scope.preferencial = function () {
                 $cordovaBluetoothSerial.isConnected().then(function () {
-                    ClientFactory.create({ name: 'PREFERENCIAL' }).then(function (response) {
+                    ClientFactory.create({ name: 'PREFERENCIAL', preferencial: true }).then(function (response) {
                         var teste = '\n\n\n'
                         teste = '  	 SISTEMA DE SENHA \n\n';
                         teste += '  SENHA: PREFERENCIAL'+ response.data.code + '\n\n';
