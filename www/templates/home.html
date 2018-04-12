@@ -1,19 +1,26 @@
 <ion-view view-title="Impressora">
   <ion-content class="bgGeral">
+    <div class="text-center" style="margin-top: 100px">
+      <img src="img/logo.png" width="321px" class="img-responsive">
+    </div>
     <ion-refresher pulling-text="Atualize.." on-refresh="doRefreshPrint()"></ion-refresher>
-    <div class="padding" style="margin-top: 150px">
+    <div class="padding" style="margin-top: 50px">
       Selecione o aparelho.
       <ion-list>
         <ion-radio ng-model="data.bluetooth" ng-value="blue.address" ng-repeat="blue in bluetooths">{{blue.name + &apos; - &apos; + blue.address}} </ion-radio>
       </ion-list>
-      <button ng-disabled="!habilitado"
-      class="button button-balanced button-block icon-right ion-bluetooth"  ng-click="conectarBluetooth(data)">Conectar!</button>
+      <div style="margin-top: 10px">
+        <button ng-disabled="!data.bluetooth" class="button button-balanced button-block icon-right ion-bluetooth" ng-click="conectarBluetooth(data)">Conectar!</button>
+      </div>
     </div>
-
     <div class="card" ng-hide="habilitado">
       <div class="item item-text-wrap">
-        <h4>Bluetooth n&#xE3;o conectado, voc&#xEA; deve habilitar o bluetooth primeiro antes de iniciar a usar o programa.</h4>
+        <h4>Habilite o bluetooth antes de utilizar o programa</h4>
       </div>
     </div>
   </ion-content>
+
 </ion-view>
+
+
+
