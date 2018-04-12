@@ -1,1 +1,8 @@
 /* Empty. Add your own CSS if you like */
+
+
+.mybutton {
+    font-size: 10em !important;
+    padding: 20px !important;
+    margin: 10px 0 10px 0 !important;
+}
