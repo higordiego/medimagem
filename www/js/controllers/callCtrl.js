@@ -8,6 +8,7 @@
         , '$ionicPlatform'
         , 'ClientFactory'
         , '$cordovaBluetoothSerial'
+        , '$stateParams'
         , function (
             $scope,
             $state,
@@ -15,8 +16,18 @@
             $ionicPopup,
             $ionicPlatform,
             ClientFactory,
-            $cordovaBluetoothSerial, ) {
+            $cordovaBluetoothSerial,
+            $stateParams
+            ) {
 
+
+            $scope.back = function () {
+                $state.go('call')
+            }
+
+            $scope.option = $state.params.option
+
+            
 
             $scope.doRefresh = function () {
                 $ionicLoading.show();
@@ -47,26 +58,46 @@
             $scope.normal = function () {
                 $ionicLoading.show();
                 $cordovaBluetoothSerial.isConnected().then(function () {
-                    ClientFactory.create({ name: 'NORMAL' }).then(function (response) {
-                        var teste = '\n\n\n'
-                        teste = '  	 SISTEMA DE SENHA \n\n';
-                        teste += '   SENHA: NORMAL' + response.data.code + '\n\n';
-                        // teste += '**********************\n'
-                        // teste += ' PDV: '+ user.name + '\n\n'; 
-                        teste += '   CONTROLE DE SENHA \n\n\n';
-                        teste += '\n\n\n'
-                        $cordovaBluetoothSerial.write(teste).then(function (a, b) {
-                            $ionicLoading.hide();
-                        }, function (err) {
-                            
-                            var alertPopup = $ionicPopup.alert({
-                                title: 'Error',
-                                template: 'Não conseguimos encontrar a Impressora'
+                    ClientFactory.create({ name: 'NORMAL' , subtitle: $scope.option.toUpperCase()}).then(function (response) {
+                        var recep = ''
+                        var exam = ''
+                        if ($scope.option.toUpperCase() == 'RECEPÇÃO' || $scope.option.toUpperCase() == 'AGENDAMENTO') {
+                            recep = '\n\n\n'
+                            recep = '       Clinimagem \n\n';
+                            recep += '   '+$scope.option.toUpperCase() +' - NORMAL \n\n';
+                            recep += '      Senha: 0'+ response.data.code +'\n\n'
+                            recep += 'Obrigado pela preferência!\n\n\n';
+                            recep += '\n\n\n'
+                            $cordovaBluetoothSerial.write(recep).then(function (a, b) {
+                                $ionicLoading.hide();
+                            }, function (err) {
+                                $ionicLoading.hide();
+                                var alertPopup = $ionicPopup.alert({
+                                    title: 'Error',
+                                    template: 'Não conseguimos encontrar a Impressora'
+                                });
+                                alertPopup.then(function () { $state.go('home') });
+    
                             });
-                            alertPopup.then(function () { $state.go('home') });
-                            $ionicLoading.hide();
-                            
-                        });
+                        } else {
+                            exam = '\n\n\n'
+                            exam = '       Clinimagem \n\n';
+                            exam += ' '+$scope.option.toUpperCase() +' - NORMAL \n';
+                            exam += '      Senha: 0'+ response.data.code +'\n\n'
+                            exam += 'Tenha em mãos protocolo ou documento com foto para retirar o seu exame. \n'
+                            exam += '\n\n\n'
+                            $cordovaBluetoothSerial.write(exam).then(function (a, b) {
+                                $ionicLoading.hide();
+                            }, function (err) {
+                                $ionicLoading.hide();
+                                var alertPopup = $ionicPopup.alert({
+                                    title: 'Error',
+                                    template: 'Não conseguimos encontrar a Impressora'
+                                });
+                                alertPopup.then(function () { $state.go('home') });
+    
+                            });
+                        }
                     }, function (err) {
                         $ionicLoading.hide();
                         var alertPopup = $ionicPopup.alert({
@@ -82,32 +113,54 @@
                         title: 'Impressora',
                         template: 'Impressora não conectada'
                     });
-                    alertPopup.then(function (){ $state.go('home') });
-                    
+                    alertPopup.then(function () { $state.go('home') });
+
                 });
             }
 
             $scope.preferencial = function () {
                 $ionicLoading.show();
                 $cordovaBluetoothSerial.isConnected().then(function () {
-                    ClientFactory.create({ name: 'PREFERENCIAL', preferencial: true }).then(function (response) {
-                        var teste = '\n\n\n'
-                        teste = '  	 SISTEMA DE SENHA \n\n';
-                        teste += '  SENHA: PREFERENCIAL' + response.data.code + '\n\n';
-                        // teste += '**********************\n'
-                        // teste += ' PDV: '+ user.name + '\n\n'; 
-                        teste += '   CONTROLE DE SENHA \n\n\n';
-                        teste += '\n\n\n'
-                        $cordovaBluetoothSerial.write(teste).then(function (a, b) {
-                            $ionicLoading.hide();
-                        }, function (err) {
-                            var alertPopup = $ionicPopup.alert({
-                                title: 'Error',
-                                template: 'Não conseguimos encontrar a Impressora'
+                    ClientFactory.create({ name: 'PRIORIDADE',  subtitle: $scope.option.toUpperCase(), preferencial: true }).then(function (response) {
+                        var recep = ''
+                        var exam = ''
+                        if ($scope.option.toUpperCase() == 'RECEPÇÃO' || $scope.option.toUpperCase() == 'AGENDAMENTO') {
+                            recep = '\n\n\n'
+                            recep = '       Clinimagem \n\n';
+                            recep += ' '+$scope.option.toUpperCase() +' - PRIORIDADE \n';
+                            recep += '      Senha: 0'+ response.data.code +'\n\n'
+                            recep += 'Obrigado pela preferência! \n';
+                            recep += '\n\n\n'
+                            $cordovaBluetoothSerial.write(recep).then(function (a, b) {
+                                $ionicLoading.hide();
+                            }, function (err) {
+                                $ionicLoading.hide();
+                                var alertPopup = $ionicPopup.alert({
+                                    title: 'Error',
+                                    template: 'Não conseguimos encontrar a Impressora'
+                                });
+                                alertPopup.then(function () { $state.go('home') });
+    
                             });
-                            alertPopup.then(function () { $state.go('home') });
-                            $ionicLoading.hide();
-                        });
+                        } else {
+                            exam = '\n\n\n'
+                            exam = '       Clinimagem \n\n';
+                            exam +=  $scope.option.toUpperCase()+' - PRIORIDADE \n\n';
+                            exam += '      Senha: 0'+ response.data.code +'\n\n'
+                            exam += 'Tenha em mãos protocolo ou documento com foto para retirar o seu exame. \n'
+                            exam += '\n\n\n'
+                            $cordovaBluetoothSerial.write(exam).then(function (a, b) {
+                                $ionicLoading.hide();
+                            }, function (err) {
+                                $ionicLoading.hide();
+                                var alertPopup = $ionicPopup.alert({
+                                    title: 'Error',
+                                    template: 'Não conseguimos encontrar a Impressora'
+                                });
+                                alertPopup.then(function () { $state.go('home') });
+    
+                            });
+                        }
                     }, function (err) {
                         $ionicLoading.hide();
                         var alertPopup = $ionicPopup.alert({
@@ -123,49 +176,49 @@
                         title: 'Impressora',
                         template: 'Impressora não conectada'
                     });
-                    alertPopup.then(function (){ $state.go('home') });
+                    alertPopup.then(function () { $state.go('home') });
                 });
             }
+            
+            // $scope.exam = function () {
+            //     $ionicLoading.show();
+            //     $cordovaBluetoothSerial.isConnected().then(function () {
+            //         ClientFactory.create({ name: 'EXAMES',  subtitle: option.toUpperCase() }).then(function (response) {
+            //             var teste = '\n\n\n'
+            //             teste = '  	 SISTEMA DE SENHA \n\n';
+            //             teste += '  SENHA: EXAMES' + response.data.code + '\n\n';
+            //             // teste += '**********************\n'
+            //             // teste += ' PDV: '+ user.name + '\n\n'; 
+            //             teste += '   CONTROLE DE SENHA \n\n\n';
+            //             teste += '\n\n\n'
+            //             $cordovaBluetoothSerial.write(teste).then(function (a, b) {
+            //                 $ionicLoading.hide();
+            //             }, function (err) {
+            //                 var alertPopup = $ionicPopup.alert({
+            //                     title: 'Error',
+            //                     template: 'Não conseguimos encontrar a Impressora'
+            //                 });
+            //                 alertPopup.then(function () { $state.go('home') });
+            //                 $ionicLoading.hide();
+            //             });
+            //         }, function (err) {
+            //             $ionicLoading.hide();
+            //             var alertPopup = $ionicPopup.alert({
+            //                 title: 'Error',
+            //                 template: 'Comunicação com o Servidor!'
+            //             });
+            //             alertPopup.then();
+            //         })
 
-            $scope.exam = function () {
-                $ionicLoading.show();
-                $cordovaBluetoothSerial.isConnected().then(function () {
-                    ClientFactory.create({ name: 'EXAMES' }).then(function (response) {
-                        var teste = '\n\n\n'
-                        teste = '  	 SISTEMA DE SENHA \n\n';
-                        teste += '  SENHA: EXAMES' + response.data.code + '\n\n';
-                        // teste += '**********************\n'
-                        // teste += ' PDV: '+ user.name + '\n\n'; 
-                        teste += '   CONTROLE DE SENHA \n\n\n';
-                        teste += '\n\n\n'
-                        $cordovaBluetoothSerial.write(teste).then(function (a, b) {
-                            $ionicLoading.hide();
-                        }, function (err) {
-                            var alertPopup = $ionicPopup.alert({
-                                title: 'Error',
-                                template: 'Não conseguimos encontrar a Impressora'
-                            });
-                            alertPopup.then(function () { $state.go('home') });
-                            $ionicLoading.hide();
-                        });
-                    }, function (err) {
-                        $ionicLoading.hide();
-                        var alertPopup = $ionicPopup.alert({
-                            title: 'Error',
-                            template: 'Comunicação com o Servidor!'
-                        });
-                        alertPopup.then();
-                    })
-
-                }, function () {
-                    $ionicLoading.hide();
-                    var alertPopup = $ionicPopup.alert({
-                        title: 'Impressora',
-                        template: 'Impressora não conectada'
-                    });
-                    alertPopup.then(function (){ $state.go('home') });
-                });
-            }
+            //     }, function () {
+            //         $ionicLoading.hide();
+            //         var alertPopup = $ionicPopup.alert({
+            //             title: 'Impressora',
+            //             template: 'Impressora não conectada'
+            //         });
+            //         alertPopup.then(function () { $state.go('home') });
+            //     });
+            // }
 
         }])
 })();

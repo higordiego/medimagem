@@ -1,7 +1,7 @@
 (function () {
-    var online = false;
+    var online = true;
     app.constant('Config', {
-        api: online ? 'https://apiteste.rmticketsbar.com.br/api/v1/' : 'http://10.20.2.119:3000/api/v1/',
-        socket: online ? 'https://apiteste.rmticketsbar.com.br/' : 'http://10.20.2.119:3000/'
+        api: online ? 'http://192.168.0.159/api/v1/' : 'http://192.168.0.156:3000/api/v1/',
+        socket: online ? 'http://192.168.0.159/' : 'http://192.168.0.156:3000/'
     })
 })();

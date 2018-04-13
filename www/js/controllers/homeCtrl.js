@@ -3,7 +3,7 @@
 	app.controller('HomeCtrl', ['$scope', '$ionicLoading', '$cordovaBluetoothSerial'
 		, '$ionicPlatform', '$state', '$ionicPopup'
 		, function ($scope, $ionicLoading, $cordovaBluetoothSerial, $ionicPlatform, $state, $ionicPopup) {
-			$ionicLoading.hide()
+			$ionicLoading.hide();
 
 			$scope.bluetooths = [];
 

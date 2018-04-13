@@ -14,6 +14,12 @@
       .state('call', {
         url: '/call',
         templateUrl: 'templates/call.html',
+        controller: 'CallListCtrl'
+      })
+
+      .state('list', {
+        url: '/list/:option',
+        templateUrl: 'templates/listCall.html',
         controller: 'CallCtrl'
       })
   
