@@ -1,33 +1,94 @@
 {
-  "name": "clinica",
-  "version": "0.0.1",
-  "description": "Painel de Senhas",
-  "devDependencies": {
-    "gulp": "^3.5.6",
-    "gulp-clean-css": "^3.7.0",
-    "gulp-rename": "^1.2.0",
-    "gulp-sass": "^3.1.0"
+  "_from": "cordova-custom-config@2.0.3",
+  "_id": "cordova-custom-config@2.0.3",
+  "_inBundle": false,
+  "_integrity": "sha1-9C3AlSu+qZELC5mz98gscLAJNo4=",
+  "_location": "/cordova-custom-config",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "cordova-custom-config@2.0.3",
+    "name": "cordova-custom-config",
+    "escapedName": "cordova-custom-config",
+    "rawSpec": "2.0.3",
+    "saveSpec": null,
+    "fetchSpec": "2.0.3"
   },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-custom-config/-/cordova-custom-config-2.0.3.tgz",
+  "_shasum": "f42dc0952bbea9910b0b99b3f7c82c70b009368e",
+  "_spec": "cordova-custom-config@2.0.3",
+  "_where": "/Users/HigorDiego/Documents/ionic/clinica",
+  "author": {
+    "name": "Dave Alden"
+  },
+  "bugs": {
+    "url": "https://github.com/dpa99c/cordova-custom-config/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-custom-config",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "plugins": {
+      "cordova-plugin-device": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-ionic-webview": {},
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-bluetooth-serial": {}
+    }
+  },
+  "cordova_name": "cordova-custom-config",
   "dependencies": {
+    "colors": "1.1.2",
     "cordova-android": "7.0.0",
     "cordova-plugin-bluetooth-serial": "^0.4.7",
     "cordova-plugin-device": "^2.0.1",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^1.2.0",
     "cordova-plugin-splashscreen": "^5.0.2",
-    "cordova-plugin-whitelist": "^1.3.3"
+    "cordova-plugin-whitelist": "^1.3.3",
+    "elementtree": "0.1.6",
+    "fs-extra": "0.26.5",
+    "gulp-clean-css": "^3.9.3",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^4.0.1",
+    "lodash": "4.3.0",
+    "plist": "1.2.0",
+    "shelljs": "0.7.0",
+    "tostr": "0.1.0",
+    "xcode": "0.8.3"
   },
-  "cordova": {
-    "plugins": {
-      "cordova-plugin-bluetooth-serial": {},
-      "cordova-plugin-whitelist": {},
-      "cordova-plugin-device": {},
-      "cordova-plugin-splashscreen": {},
-      "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-ionic-keyboard": {}
-    },
-    "platforms": [
-      "android"
-    ]
+  "deprecated": false,
+  "description": "Cordova/Phonegap plugin to update platform configuration files based on preferences and config-file data defined in config.xml.",
+  "homepage": "https://github.com/dpa99c/cordova-custom-config#readme",
+  "issue": "https://github.com/dpa99c/cordova-custom-config/issues",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova",
+    "cordova-android",
+    "cordova-ios",
+    "phonegap",
+    "config",
+    "configuration",
+    "plist",
+    "manifest"
+  ],
+  "license": "MIT",
+  "name": "cordova-custom-config",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dpa99c/cordova-custom-config.git"
+  },
+  "version": "2.0.3",
+  "devDependencies": {
+    "gulp": "^3.9.1"
   }
 }

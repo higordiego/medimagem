@@ -11,8 +11,8 @@
 
 
 			$scope.doRefreshPrint = function () {
-				$ionicLoading.show();
-				$scope.listProduct()
+				$scope.bluetooths = []
+				$scope.listarBluetooth()
 				$scope.$broadcast('scroll.refreshComplete');
 			}
 
