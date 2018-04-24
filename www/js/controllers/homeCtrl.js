@@ -50,6 +50,22 @@
 					$cordovaBluetoothSerial.connect(address).then(function () {
 						$cordovaBluetoothSerial.isConnected().then(function () {
 							$ionicLoading.hide();
+							var recep = 'teste de impressora \n\n'
+							$cordovaBluetoothSerial.write(recep).then(function (a, b) {
+								$ionicLoading.hide();
+								$state.go('call')
+							}, function (err) {
+								$ionicLoading.hide();
+								var alertPopup = $ionicPopup.alert({
+									title: 'Error',
+									template: 'Não conseguimos encontrar a Impressora'
+								});
+								alertPopup.then(function () {
+									$ionicLoading.hide();
+									$state.go('home')
+								});
+
+							});
 							confirmPrint()
 						}, function (err) {
 							$ionicLoading.hide();
