@@ -67,7 +67,7 @@
                         var exam = ''
                         if ($scope.option.toUpperCase() == 'RECEPÇÃO' || $scope.option.toUpperCase() == 'AGENDAMENTO') {
                             recep = '\n\n\n'
-                            recep = '       Clinimagem \n\n';
+                            recep = '       Medimagem \n\n';
                             recep += '   '+$scope.option.toUpperCase() +' - NORMAL \n\n';
                             recep += '      Senha: 0'+ response.data.code +'\n\n'
                             recep += 'Obrigado pela preferência!\n\n\n';
@@ -89,7 +89,7 @@
                             });
                         } else {
                             exam = '\n\n\n'
-                            exam = '       Clinimagem \n\n';
+                            exam = '       Medimagem \n\n';
                             exam += ' '+$scope.option.toUpperCase() +' - NORMAL \n';
                             exam += '      Senha: 0'+ response.data.code +'\n\n'
                             exam += 'Tenha em mãos protocolo ou documento com foto\n'
@@ -142,7 +142,7 @@
                         var exam = ''
                         if ($scope.option.toUpperCase() == 'RECEPÇÃO' || $scope.option.toUpperCase() == 'AGENDAMENTO') {
                             recep = '\n\n\n'
-                            recep = '       Clinimagem \n\n';
+                            recep = '       Medimagem \n\n';
                             recep += ' '+$scope.option.toUpperCase() +' - PRIORIDADE \n';
                             recep += '      Senha: 0'+response.data.code+'\n\n'
                             recep += 'Obrigado pela preferência!\n\n\n';
@@ -160,7 +160,7 @@
                             });
                         } else {
                             exam = '\n\n\n'
-                            exam = '       Clinimagem \n\n';
+                            exam = '       Medimagem \n\n';
                             exam +=  $scope.option.toUpperCase()+' - PRIORIDADE \n\n';
                             exam += '      Senha: 0'+ response.data.code +'\n\n'
                             exam += 'Tenha em mãos protocolo ou documento com foto\n'
