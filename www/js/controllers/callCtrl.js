@@ -65,12 +65,12 @@
                     ClientFactory.create({ name: 'NORMAL' , subtitle: $scope.option.toUpperCase()}).then(function (response) {
                         var recep = ''
                         var exam = ''
-                        if ($scope.option.toUpperCase() == 'RECEPÇÃO' || $scope.option.toUpperCase() == 'AGENDAMENTO') {
+                        if ($scope.option.toUpperCase() == 'RECEPCAO' || $scope.option.toUpperCase() == 'AGENDAMENTO') {
                             recep = '\n\n\n'
-                            recep = '       Medimagem \n\n';
+                            recep = '       MEDIMAGEM \n\n';
                             recep += '   '+$scope.option.toUpperCase() +' - NORMAL \n\n';
-                            recep += '      Senha: 0'+ response.data.code +'\n\n'
-                            recep += 'Obrigado pela preferência!\n\n\n';
+                            recep += '      SENHA: 0'+ response.data.code +'\n\n'
+                            recep += '-------------- // ------------\n\n\n';
                             recep += '\n\n\n'
                             $cordovaBluetoothSerial.write(recep).then(function (a, b) {
                                 $ionicLoading.hide();
@@ -89,11 +89,10 @@
                             });
                         } else {
                             exam = '\n\n\n'
-                            exam = '       Medimagem \n\n';
-                            exam += ' '+$scope.option.toUpperCase() +' - NORMAL \n';
-                            exam += '      Senha: 0'+ response.data.code +'\n\n'
-                            exam += 'Tenha em mãos protocolo ou documento com foto\n'
-                            exam += 'para retirar o seu exame\n'
+                            exam = '       MEDIMAGEM \n\n';
+                            exam += ' '+$scope.option.toUpperCase() +' - NORMAL \n\n';
+                            exam += '      SENHA: 0'+ response.data.code +'\n\n'
+                            recep += '-------------- // ------------\n\n\n';
                             exam += '\n\n\n'
                             $cordovaBluetoothSerial.write(exam).then(function (a, b) {
                                 $ionicLoading.hide();
@@ -140,12 +139,13 @@
                     ClientFactory.create({ name: 'PRIORIDADE',  subtitle: $scope.option.toUpperCase(), preferencial: true }).then(function (response) {
                         var recep = ''
                         var exam = ''
-                        if ($scope.option.toUpperCase() == 'RECEPÇÃO' || $scope.option.toUpperCase() == 'AGENDAMENTO') {
+                        if ($scope.option.toUpperCase() == 'RECEPCAO' || $scope.option.toUpperCase() == 'AGENDAMENTO') {
                             recep = '\n\n\n'
-                            recep = '       Medimagem \n\n';
-                            recep += ' '+$scope.option.toUpperCase() +' - PRIORIDADE \n';
-                            recep += '      Senha: 0'+response.data.code+'\n\n'
-                            recep += 'Obrigado pela preferência!\n\n\n';
+                            recep = '           MEDIMAGEM \n\n';
+                            recep += '  '+$scope.option.toUpperCase() +' - PRIORIDADE \n\n';
+                            recep += '      SENHA: 0'+response.data.code+'\n\n'
+                            recep += '-------------- // ------------\n\n\n';
+                            recep += '\n\n\n'
                             $cordovaBluetoothSerial.write(recep).then(function (a, b) {
                                 $ionicLoading.hide();
                                 $state.go('call')
@@ -160,11 +160,10 @@
                             });
                         } else {
                             exam = '\n\n\n'
-                            exam = '       Medimagem \n\n';
+                            exam = '       MEDIMAGEM \n\n';
                             exam +=  $scope.option.toUpperCase()+' - PRIORIDADE \n\n';
-                            exam += '      Senha: 0'+ response.data.code +'\n\n'
-                            exam += 'Tenha em mãos protocolo ou documento com foto\n'
-                            exam += 'para retirar o seu exame\n'
+                            exam += '      SENHA: 0'+ response.data.code +'\n\n'
+                            recep += '-------------- // ------------\n\n\n';
                             exam += '\n\n\n'
                             $cordovaBluetoothSerial.write(exam).then(function (a, b) {
                                 $ionicLoading.hide();

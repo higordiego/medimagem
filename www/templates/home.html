@@ -4,7 +4,7 @@
       <img src="img/logo.png" width="321px" class="img-responsive">
     </div>
     <ion-refresher pulling-text="Atualize.." on-refresh="doRefreshPrint()"></ion-refresher>
-    <div class="padding" style="margin-top: 50px">
+    <div class="padding" style="margin-top: 100px">
       Selecione o aparelho.
       <ion-list>
         <ion-radio ng-model="data.bluetooth" ng-value="blue.address" ng-repeat="blue in bluetooths">{{blue.name + &apos; - &apos; + blue.address}} </ion-radio>
@@ -19,7 +19,6 @@
       </div>
     </div>
   </ion-content>
-
 </ion-view>
 
 
